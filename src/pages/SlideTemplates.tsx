@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Maximize2, ChevronLeft, ChevronRight, Lightbulb } from "lucide-react";
+import { ArrowLeft, Maximize2, ChevronLeft, ChevronRight, Lightbulb, Download } from "lucide-react";
+import { exportAllSlides } from "@/lib/exportPptx";
 import SlideLayout, { ScaledSlide } from "@/components/slides/SlideLayout";
 import logoMark from "@/assets/logo-mark.svg";
 import logoTransparent from "@/assets/logo-transparent.png";
