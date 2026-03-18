@@ -443,7 +443,7 @@ const slides: SlideDef[] = [
     render: (n, t) => (
       <SlideLayout dark slideNumber={n} totalSlides={t}>
         <div className="flex-1 flex flex-col items-center justify-center text-center">
-          <img src={logoPrimary} alt="Storm Jarvie" className="h-[64px] mb-[48px]" style={{ filter: "brightness(0) invert(1)" }} />
+          <img src={logoTransparent} alt="Storm Jarvie" className="h-[64px] mb-[48px]" style={{ filter: "brightness(0) invert(1)" }} />
           <h2 className="text-[72px] font-bold tracking-[-0.04em] mb-[24px]">Thank You</h2>
           <p className="text-[28px] text-[hsl(0,0%,100%)]/60 font-light">Let's keep the momentum going.</p>
           <div className="flex items-center gap-[48px] mt-[60px] text-[hsl(0,0%,100%)]/50 font-mono text-[18px]">
