@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Maximize2, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, Maximize2, ChevronLeft, ChevronRight, Lightbulb } from "lucide-react";
 import SlideLayout, { ScaledSlide } from "@/components/slides/SlideLayout";
 import logoMark from "@/assets/logo-mark.svg";
-import logoPrimary from "@/assets/logo-primary.svg";
+import logoTransparent from "@/assets/logo-transparent.png";
 import {
   BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid,
   Tooltip, ResponsiveContainer, Cell,
