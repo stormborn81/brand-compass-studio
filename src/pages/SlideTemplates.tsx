@@ -385,8 +385,9 @@ const slides: SlideDef[] = [
     render: (n, t) => (
       <SlideLayout slideNumber={n} totalSlides={t}>
         <span className="font-mono text-[14px] text-[hsl(20,90%,55%)] tracking-widest uppercase mb-[16px]">Detailed Results</span>
-        <h2 className="text-[48px] font-bold tracking-[-0.04em] mb-[48px]">Experiment Metrics Breakdown</h2>
-        <div className="flex-1">
+        <h2 className="text-[48px] font-bold tracking-[-0.04em] mb-[16px]">Experiment Metrics Breakdown</h2>
+        <InsightCallout>Conversion rate and revenue per visitor both showed statistically significant lifts, validating the hypothesis at 98% confidence.</InsightCallout>
+        <div className="flex-1 mt-[24px]">
           <table className="w-full">
             <thead>
               <tr className="border-b-[3px] border-[hsl(150,48%,20%)]">
