@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Maximize2, ChevronLeft, ChevronRight, Lightbulb } from "lucide-react";
+import { ArrowLeft, Maximize2, ChevronLeft, ChevronRight, Lightbulb, Download } from "lucide-react";
+import { exportAllSlides } from "@/lib/exportPptx";
 import SlideLayout, { ScaledSlide } from "@/components/slides/SlideLayout";
 import logoMark from "@/assets/logo-mark.svg";
 import logoTransparent from "@/assets/logo-transparent.png";
@@ -680,7 +681,22 @@ const SlideTemplates = () => {
               {slides[activeIndex].category}
             </span>
           </div>
-          <span className="font-mono text-[10px] text-muted-foreground">1920 × 1080</span>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={async () => {
+                try {
+                  await exportAllSlides();
+                } catch (e) {
+                  console.error("PPTX export failed:", e);
+                }
+              }}
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+            >
+              <Download className="w-3.5 h-3.5" />
+              Export PPTX
+            </button>
+            <span className="font-mono text-[10px] text-muted-foreground">1920 × 1080</span>
+          </div>
         </div>
 
         {/* Canvas area */}
