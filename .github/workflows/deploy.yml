@@ -18,6 +18,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Set base path for GitHub Pages
+        run: |
+          sed -i 's/export default defineConfig(({ mode }) => ({/export default defineConfig(({ mode }) => ({\n  base: "\/brand-compass-studio\/",/' vite.config.ts
+
       - name: Build
         run: npm run build
 
