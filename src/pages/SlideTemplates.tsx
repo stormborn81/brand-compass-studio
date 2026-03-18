@@ -348,7 +348,7 @@ const slides: SlideDef[] = [
         <span className="font-mono text-[14px] text-[hsl(20,90%,55%)] tracking-widest uppercase mb-[16px]">Comparison</span>
         <h2 className="text-[48px] font-bold tracking-[-0.04em] mb-[16px]">Revenue vs. Benchmark</h2>
         <InsightCallout>We outperformed industry benchmarks by 34% in Q2, with the gap widening each month — indicating compounding returns from strategic investment.</InsightCallout>
-        <div className="flex-1 flex gap-[60px]">
+        <div className="flex-1 flex gap-[60px] mt-[24px]">
           <div className="flex-1 flex flex-col">
             <span className="font-mono text-[16px] text-[hsl(210,10%,40%)] mb-[16px]">Actual Revenue</span>
             <div className="flex-1">
