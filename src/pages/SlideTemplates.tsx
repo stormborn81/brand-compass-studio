@@ -73,6 +73,14 @@ const BrowserFrame = ({ children }: { children?: React.ReactNode }) => (
   </div>
 );
 
+// Insight callout box
+const InsightCallout = ({ children }: { children: React.ReactNode }) => (
+  <div className="flex items-start gap-[20px] bg-[hsl(150,20%,94%)] rounded-[12px] px-[32px] py-[24px] mt-[24px]">
+    <Lightbulb className="w-[28px] h-[28px] text-[hsl(20,90%,55%)] shrink-0 mt-[2px]" />
+    <p className="text-[20px] leading-[1.6] text-[hsl(210,10%,30%)] font-serif">{children}</p>
+  </div>
+);
+
 const slides: SlideDef[] = [
   // 1. Cover
   {
