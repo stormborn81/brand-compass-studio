@@ -88,7 +88,13 @@ const slides: SlideDef[] = [
     render: (n, t) => (
       <SlideLayout dark slideNumber={n} totalSlides={t}>
         <div className="flex-1 flex flex-col justify-center">
-          <img src={logoTransparent} alt="Storm Jarvie" className="h-[56px] w-auto mb-[60px]" style={{ filter: "brightness(0) invert(1)" }} />
+          <div className="flex items-center gap-[40px] mb-[60px]">
+            <img src={logoTransparent} alt="Storm Jarvie" className="h-[48px] w-auto object-contain" style={{ filter: "brightness(0) invert(1)" }} />
+            <span className="w-[2px] h-[36px] bg-[hsl(0,0%,100%)]/20" />
+            <div className="h-[40px] px-[24px] rounded-[8px] border-[2px] border-dashed border-[hsl(0,0%,100%)]/20 flex items-center">
+              <span className="font-mono text-[13px] text-[hsl(0,0%,100%)]/30 tracking-wider uppercase">Client Logo</span>
+            </div>
+          </div>
           <h1 className="text-[72px] font-bold leading-[1.1] tracking-[-0.04em] max-w-[1200px]">
             Monthly Performance<br />Review
           </h1>
