@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Maximize2, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, Maximize2, ChevronLeft, ChevronRight, Lightbulb } from "lucide-react";
 import SlideLayout, { ScaledSlide } from "@/components/slides/SlideLayout";
 import logoMark from "@/assets/logo-mark.svg";
-import logoPrimary from "@/assets/logo-primary.svg";
+import logoTransparent from "@/assets/logo-transparent.png";
 import {
   BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid,
   Tooltip, ResponsiveContainer, Cell,
@@ -73,6 +73,14 @@ const BrowserFrame = ({ children }: { children?: React.ReactNode }) => (
   </div>
 );
 
+// Insight callout box
+const InsightCallout = ({ children }: { children: React.ReactNode }) => (
+  <div className="flex items-start gap-[20px] bg-[hsl(150,20%,94%)] rounded-[12px] px-[32px] py-[24px] mt-[24px]">
+    <Lightbulb className="w-[28px] h-[28px] text-[hsl(20,90%,55%)] shrink-0 mt-[2px]" />
+    <p className="text-[20px] leading-[1.6] text-[hsl(210,10%,30%)] font-serif">{children}</p>
+  </div>
+);
+
 const slides: SlideDef[] = [
   // 1. Cover
   {
@@ -80,7 +88,7 @@ const slides: SlideDef[] = [
     render: (n, t) => (
       <SlideLayout dark slideNumber={n} totalSlides={t}>
         <div className="flex-1 flex flex-col justify-center">
-          <img src={logoPrimary} alt="Storm Jarvie" className="h-[56px] w-auto mb-[60px]" style={{ filter: "brightness(0) invert(1)" }} />
+          <img src={logoTransparent} alt="Storm Jarvie" className="h-[56px] w-auto mb-[60px]" style={{ filter: "brightness(0) invert(1)" }} />
           <h1 className="text-[72px] font-bold leading-[1.1] tracking-[-0.04em] max-w-[1200px]">
             Monthly Performance<br />Review
           </h1>
@@ -276,34 +284,64 @@ const slides: SlideDef[] = [
     render: (n, t) => (
       <SlideLayout slideNumber={n} totalSlides={t}>
         <span className="font-mono text-[14px] text-[hsl(20,90%,55%)] tracking-widest uppercase mb-[16px]">Experiment Results</span>
-        <h2 className="text-[48px] font-bold tracking-[-0.04em] mb-[48px]">CTA Button Redesign — Results</h2>
-        <div className="flex-1 flex gap-[60px]">
-          <div className="flex-1 flex flex-col gap-[40px]">
-            <div>
-              <span className="font-mono text-[14px] text-[hsl(210,10%,40%)] uppercase tracking-wider">Hypothesis</span>
-              <p className="text-[24px] leading-[1.6] mt-[12px] font-serif text-[hsl(210,10%,30%)]">
-                A larger, orange CTA with action-oriented copy will increase sign-up conversion rate by ≥15%.
-              </p>
-            </div>
-            <div className="grid grid-cols-3 gap-[32px]">
+        <h2 className="text-[48px] font-bold tracking-[-0.04em] mb-[40px]">CTA Button Redesign — Results</h2>
+        <div className="flex-1 grid grid-cols-3 gap-[48px]">
+          {/* Column 1: Hypothesis */}
+          <div className="flex flex-col">
+            <span className="font-mono text-[16px] text-[hsl(150,48%,20%)] uppercase tracking-wider mb-[24px] font-bold">Hypothesis</span>
+            <div className="space-y-[20px]">
               {[
-                { label: "Conversion Rate", value: "+61.9%", sub: "2.1% → 3.4%" },
-                { label: "Statistical Sig.", value: "98.2%", sub: "p = 0.018" },
-                { label: "Sample Size", value: "12,400", sub: "per variant" },
-              ].map((m, i) => (
-                <div key={i} className="bg-[hsl(150,15%,92%)] rounded-[12px] p-[32px]">
-                  <span className="font-mono text-[13px] text-[hsl(210,10%,40%)] uppercase tracking-wider">{m.label}</span>
-                  <div className="text-[48px] font-bold tracking-[-0.04em] mt-[8px]">{m.value}</div>
-                  <span className="font-mono text-[14px] text-[hsl(210,10%,50%)]">{m.sub}</span>
+                { label: "We have observed", text: "The current CTA button has a low click-through rate of 2.1% on the sign-up page." },
+                { label: "Which we believe", text: "Is caused by the button being too small and using generic copy that doesn't convey urgency." },
+                { label: "If we", text: "Increase the button size by 20%, change to orange, and use action-oriented copy." },
+                { label: "We will", text: "See a ≥15% increase in sign-up conversion rate within 14 days." },
+                { label: "Because", text: "A more prominent, action-driven CTA reduces friction and increases intent." },
+              ].map((item, i) => (
+                <div key={i}>
+                  <span className="font-mono text-[13px] text-[hsl(20,90%,55%)] uppercase tracking-wider font-semibold">{item.label}</span>
+                  <p className="text-[18px] leading-[1.5] text-[hsl(210,10%,30%)] mt-[4px]">{item.text}</p>
                 </div>
               ))}
             </div>
           </div>
-          <div className="w-[360px] flex flex-col items-center justify-center">
-            <div className="w-full bg-[hsl(160,84%,39%)] rounded-[16px] p-[40px] flex flex-col items-center text-[hsl(0,0%,100%)]">
-              <span className="font-mono text-[16px] tracking-widest uppercase opacity-70">Verdict</span>
-              <span className="text-[56px] font-bold mt-[8px]">WIN</span>
-              <span className="text-[18px] mt-[8px] opacity-80">Ship to 100%</span>
+          {/* Column 2: Results */}
+          <div className="flex flex-col gap-[24px]">
+            <span className="font-mono text-[16px] text-[hsl(150,48%,20%)] uppercase tracking-wider mb-[0px] font-bold">Results</span>
+            {[
+              { label: "Conversion Rate", value: "+61.9%", sub: "2.1% → 3.4%" },
+              { label: "Statistical Sig.", value: "98.2%", sub: "p = 0.018" },
+              { label: "Sample Size", value: "12,400", sub: "per variant" },
+            ].map((m, i) => (
+              <div key={i} className="bg-[hsl(150,15%,92%)] rounded-[12px] p-[28px]">
+                <span className="font-mono text-[13px] text-[hsl(210,10%,40%)] uppercase tracking-wider">{m.label}</span>
+                <div className="text-[44px] font-bold tracking-[-0.04em] mt-[6px]">{m.value}</div>
+                <span className="font-mono text-[14px] text-[hsl(210,10%,50%)]">{m.sub}</span>
+              </div>
+            ))}
+          </div>
+          {/* Column 3: Verdict + Insights */}
+          <div className="flex flex-col">
+            <span className="font-mono text-[16px] text-[hsl(150,48%,20%)] uppercase tracking-wider mb-[24px] font-bold">Verdict</span>
+            <div className="bg-[hsl(160,84%,39%)] rounded-[16px] p-[32px] flex flex-col items-center text-[hsl(0,0%,100%)] mb-[32px]">
+              <span className="font-mono text-[14px] tracking-widest uppercase opacity-70">Result</span>
+              <span className="text-[52px] font-bold mt-[4px]">WIN</span>
+              <span className="text-[16px] mt-[4px] opacity-80">Ship to 100%</span>
+            </div>
+            <div>
+              <span className="font-mono text-[14px] text-[hsl(210,10%,40%)] uppercase tracking-wider font-semibold">Insights & Next Steps</span>
+              <ul className="mt-[16px] space-y-[12px]">
+                {[
+                  "Roll out variant B to 100% of traffic immediately.",
+                  "Apply learnings to secondary CTAs across checkout flow.",
+                  "Run follow-up test on copy variations to further optimise.",
+                  "Monitor for novelty effect over next 30 days.",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-[12px]">
+                    <span className="w-[6px] h-[6px] rounded-full bg-[hsl(20,90%,55%)] mt-[10px] shrink-0" />
+                    <span className="text-[18px] leading-[1.5] text-[hsl(210,10%,30%)]">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
@@ -316,8 +354,9 @@ const slides: SlideDef[] = [
     render: (n, t) => (
       <SlideLayout slideNumber={n} totalSlides={t}>
         <span className="font-mono text-[14px] text-[hsl(20,90%,55%)] tracking-widest uppercase mb-[16px]">Performance Data</span>
-        <h2 className="text-[48px] font-bold tracking-[-0.04em] mb-[48px]">Revenue Growth — H1 2026</h2>
-        <div className="flex-1">
+        <h2 className="text-[48px] font-bold tracking-[-0.04em] mb-[24px]">Revenue Growth — H1 2026</h2>
+        <InsightCallout>Revenue acceleration in Q2 correlates with the new content strategy launch in March. Organic channel drove 68% of net-new revenue.</InsightCallout>
+        <div className="flex-1 mt-[24px]">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={chartData} barSize={60}>
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(210,15%,90%)" vertical={false} />
@@ -337,8 +376,9 @@ const slides: SlideDef[] = [
     render: (n, t) => (
       <SlideLayout slideNumber={n} totalSlides={t}>
         <span className="font-mono text-[14px] text-[hsl(20,90%,55%)] tracking-widest uppercase mb-[16px]">Comparison</span>
-        <h2 className="text-[48px] font-bold tracking-[-0.04em] mb-[40px]">Revenue vs. Benchmark</h2>
-        <div className="flex-1 flex gap-[60px]">
+        <h2 className="text-[48px] font-bold tracking-[-0.04em] mb-[16px]">Revenue vs. Benchmark</h2>
+        <InsightCallout>We outperformed industry benchmarks by 34% in Q2, with the gap widening each month — indicating compounding returns from strategic investment.</InsightCallout>
+        <div className="flex-1 flex gap-[60px] mt-[24px]">
           <div className="flex-1 flex flex-col">
             <span className="font-mono text-[16px] text-[hsl(210,10%,40%)] mb-[16px]">Actual Revenue</span>
             <div className="flex-1">
@@ -375,8 +415,9 @@ const slides: SlideDef[] = [
     render: (n, t) => (
       <SlideLayout slideNumber={n} totalSlides={t}>
         <span className="font-mono text-[14px] text-[hsl(20,90%,55%)] tracking-widest uppercase mb-[16px]">Detailed Results</span>
-        <h2 className="text-[48px] font-bold tracking-[-0.04em] mb-[48px]">Experiment Metrics Breakdown</h2>
-        <div className="flex-1">
+        <h2 className="text-[48px] font-bold tracking-[-0.04em] mb-[16px]">Experiment Metrics Breakdown</h2>
+        <InsightCallout>Conversion rate and revenue per visitor both showed statistically significant lifts, validating the hypothesis at 98% confidence.</InsightCallout>
+        <div className="flex-1 mt-[24px]">
           <table className="w-full">
             <thead>
               <tr className="border-b-[3px] border-[hsl(150,48%,20%)]">
@@ -443,7 +484,7 @@ const slides: SlideDef[] = [
     render: (n, t) => (
       <SlideLayout dark slideNumber={n} totalSlides={t}>
         <div className="flex-1 flex flex-col items-center justify-center text-center">
-          <img src={logoPrimary} alt="Storm Jarvie" className="h-[64px] mb-[48px]" style={{ filter: "brightness(0) invert(1)" }} />
+          <img src={logoTransparent} alt="Storm Jarvie" className="h-[64px] mb-[48px]" style={{ filter: "brightness(0) invert(1)" }} />
           <h2 className="text-[72px] font-bold tracking-[-0.04em] mb-[24px]">Thank You</h2>
           <p className="text-[28px] text-[hsl(0,0%,100%)]/60 font-light">Let's keep the momentum going.</p>
           <div className="flex items-center gap-[48px] mt-[60px] text-[hsl(0,0%,100%)]/50 font-mono text-[18px]">
