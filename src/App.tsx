@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import BrandGuidelines from "./pages/BrandGuidelines.tsx";
+import SlideTemplates from "./pages/SlideTemplates.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -16,6 +17,7 @@ const App = () => (
       <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route path="/" element={<BrandGuidelines />} />
+          <Route path="/slides" element={<SlideTemplates />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
