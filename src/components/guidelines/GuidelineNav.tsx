@@ -57,7 +57,13 @@ const GuidelineNav = () => {
           </a>
         ))}
       </div>
-      <div className="pt-4 border-t border-border">
+      <div className="pt-4 border-t border-border space-y-3">
+        <Link
+          to="/slides"
+          className="block px-3 py-2 text-sm rounded-md bg-accent text-accent-foreground font-medium hover:opacity-90 transition-opacity text-center"
+        >
+          Slide Templates →
+        </Link>
         <span className="font-mono text-[10px] text-muted-foreground">v1.0 · March 2026</span>
       </div>
     </nav>
